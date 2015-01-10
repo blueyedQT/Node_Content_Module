@@ -1,5 +1,6 @@
 var http = require('http');
 var fs = require('fs');
+var path = require('path');
 var static_contents = require('./modules/static.js');
 
 server = http.createServer(function (request, response){
