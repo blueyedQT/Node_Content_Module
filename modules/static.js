@@ -4,7 +4,7 @@ var fs = require('fs');
 module.exports = function(request, response) {
 	var url = request.url;
 	response.writeHead(200, {'Content-type': 'text/html'});
-	if(path.dirname(url) === '/public' || url === '/public') {
+	if(path.dirname(url) === '/private' || url === '/private') {
 		response.writeHead(403, {'Content-type': 'text/html'});
 		response.end();
 	} else if(url === '/') {
