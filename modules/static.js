@@ -4,7 +4,10 @@ var fs = require('fs');
 module.exports = function(request, response) {
 	var url = request.url;
 	response.writeHead(200, {'Content-type': 'text/html'});
-	if(url === '/') {
+	if(path.dirname(url) === '/public' || url === '/public') {
+		response.writeHead(403, {'Content-type': 'text/html'});
+		response.end();
+	} else if(url === '/') {
 		fs.readFile('views/index.html', 'utf-8', function (errors, contents){
 			response.write(contents);
 			response.end();
@@ -35,11 +38,12 @@ module.exports = function(request, response) {
 				response.writeHead(404, {'Content-type': 'text/css'});
 				response.end();
 			}
-			
+		
 		});
 	} else {
 		response.writeHead(404, {'Content-type': 'text/html'});
 		response.write('File not found!!!');
 		response.end();
 	}
+
 }
